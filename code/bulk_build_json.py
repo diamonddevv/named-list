@@ -41,7 +41,7 @@ def prepFile(path):
 
 
 forePath = "./names/forenames.txt"
-mPath = "./names/middle-names.txt"
+mPath = "./names/middlenames.txt"
 surPath = "./names/surnames.txt"
 
 outpath = "./out/generated_names.json"
