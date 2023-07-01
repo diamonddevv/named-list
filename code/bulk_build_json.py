@@ -1,5 +1,13 @@
+"""
+Written by: DiamondDev
+License: Public Domain
+
+This is a probably mediocre python script that builds a list of forenames, middle names and surnames 
+from the datasets and compiles them to a easy-to-use JSON file. (Builds to ./out/generated_names.json)
+"""
+
+import named_list as nl
 import random as r
-import os
 
 def getIndex(list):
     return r.randint(0, len(list))
@@ -30,19 +38,8 @@ def buildList(filepath, count):
         i -= 1
     return string
 
-def prepFile(path):
-    if (os.path.exists(path)):
-        return
-    else:
-        dirs = path.split("/")
-        os.makedirs(path[:len(dirs[len(dirs)-1])+1])
-                
-        open(path, "x")
 
 
-forePath = "./names/forenames.txt"
-mPath = "./names/middlenames.txt"
-surPath = "./names/surnames.txt"
 
 outpath = "./out/generated_names.json"
 
@@ -56,14 +53,14 @@ foreCount = int(input("Enter count of forenames to generate: ")) # im not input 
 mCount = int(input("Enter count of middle-names to generate: "))
 surCount = int(input("Enter count of surnames to generate: "))
 
-forenames = buildList(forePath, foreCount)
-mnames = buildList(mPath, mCount)
-surnames = buildList(surPath, surCount)
+forenames = buildList(nl.forePath, foreCount)
+mnames = buildList(nl.mPath, mCount)
+surnames = buildList(nl.surPath, surCount)
 
 
 string = "{\n\t" + f"\"forenames\": [\n\t{forenames}],\n\t\"middlenames\": [\n\t{mnames}],\n\t\"surnames\": [\n\t{surnames}]" + "\n}"
 
-prepFile(outpath)
+nl.prepFile(outpath)
 
 print("\n\n")
 
